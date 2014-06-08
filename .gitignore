@@ -1,0 +1,6 @@
+#archivos añadidos para que no sean subidos al repositorio
+.settings
+.classpath
+.project
+README.md
+bin
