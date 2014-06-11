@@ -1,20 +1,23 @@
 package negocio;
-
+//Esta clase contiene el metodo resolver(), el cual encuentra 
+//el mejor equipo segun las condiciones dadas
 public class Equipo 
 {
 	
-	public static void resolver(Instancia instanciamochi)
+	public static void resolver(Instancia instancia)
 	{
-		Generador generador = new Generador (instanciamochi);
+		Generador generador = new Generador (instancia);
 		Subconjunto elMejor = null;
 		
+		//Mientras halla otro subconjunto por generar
 		while(generador.hasNext())
 		{
+			//Genera un subconjunto nuevo
 			Subconjunto actual = generador.next();
 			
 			if(actual.cantidadDeJugadores()==11 && actual.esFormacionValida())
 			{
-				if(elMejor==null || elMejor.rendimiento()<actual.rendimiento())
+				if(elMejor==null || elMejor.rendimientoTotal() < actual.rendimientoTotal())
 					elMejor = actual;
 			}
 		}
@@ -26,6 +29,8 @@ public class Equipo
 	public static void main(String[] args) 
 	{
 		//el main para testear 
+		
+		
 	}
 	
 }
