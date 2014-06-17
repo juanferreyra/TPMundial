@@ -53,9 +53,9 @@ public class Equipo
 		inst.agregarJugador("Rodrigo Palacio","DL",8);
 		inst.agregarJugador("Carlos Tevez","DL",9);
 		
-		inst.agregarVariacionRendimiento(1,0,-100);
-		inst.agregarVariacionRendimiento(2,0,-100);
-		inst.agregarVariacionRendimiento(2,1,-100);
+		inst.agregarVariacionRendimiento(1,0,100);
+		inst.agregarVariacionRendimiento(2,0,100);
+		inst.agregarVariacionRendimiento(2,1,100);
 		inst.agregarVariacionRendimiento(4,1,-10);
 		inst.agregarVariacionRendimiento(4,3,-10);
 		inst.agregarVariacionRendimiento(6,0,3);
@@ -69,14 +69,14 @@ public class Equipo
 		inst.agregarVariacionRendimiento(13,9,34);
 		inst.agregarVariacionRendimiento(13,11,-30);
 		inst.agregarVariacionRendimiento(14,4,-24);
-		inst.agregarVariacionRendimiento(15,5,-30);
-		inst.agregarVariacionRendimiento(15,13,-23);
-		inst.agregarVariacionRendimiento(16,2,-2);
+		inst.agregarVariacionRendimiento(15,5,70);
+		inst.agregarVariacionRendimiento(15,13,34);
+		inst.agregarVariacionRendimiento(16,2,20);
 		inst.agregarVariacionRendimiento(16,8,40);
 		inst.agregarVariacionRendimiento(17,13,-50);
 		inst.agregarVariacionRendimiento(17,16,-7);
 		inst.agregarVariacionRendimiento(18,10,45);
-		inst.agregarVariacionRendimiento(19,4,55);
+		inst.agregarVariacionRendimiento(19,4,-20);
 		inst.agregarVariacionRendimiento(19,15,-10);
 		inst.agregarVariacionRendimiento(20,1,-41);
 		inst.agregarVariacionRendimiento(20,18,43);
@@ -86,32 +86,12 @@ public class Equipo
 		inst.agregarVariacionRendimiento(22,2,78);
 		inst.agregarVariacionRendimiento(22,8,-3);
 		inst.agregarVariacionRendimiento(22,14,33);
-		inst.agregarVariacionRendimiento(22,17,-80);
-		inst.agregarVariacionRendimiento(22,19,40);
+		inst.agregarVariacionRendimiento(22,17,-100);
+		inst.agregarVariacionRendimiento(22,19,-10);
 		inst.agregarVariacionRendimiento(22,21,-40);
-		
+
+
 		Equipo.resolver(inst);
-		/*	
-		Instancia inst = new Instancia(4);
-		
-		inst.agregarJugador("Juan","AR",10);
-		inst.agregarJugador("Pedro","DF",8);
-		inst.agregarJugador("Sergio","MD",6);
-		inst.agregarJugador("Leo","DL",7);
-		
-		inst.agregarVariacionRendimiento(0, 0, 0);
-		inst.agregarVariacionRendimiento(0, 1, -5);
-		inst.agregarVariacionRendimiento(1, 1, 0);
-		inst.agregarVariacionRendimiento(0, 2, -10);
-		inst.agregarVariacionRendimiento(1, 2, -1);
-		inst.agregarVariacionRendimiento(2, 2, 0);
-		inst.agregarVariacionRendimiento(0, 3, -50);
-		inst.agregarVariacionRendimiento(1, 3, -35);
-		inst.agregarVariacionRendimiento(2, 3, 15);
-		inst.agregarVariacionRendimiento(3, 3, 0);
-		
-		Equipo.resolver(inst);
-		*/
 	}
 	
 }

@@ -127,6 +127,19 @@ public class Subconjunto
 		return formacion;
 	}
 	
+	public boolean esIguala(int[] otraFormacion)
+	{
+		int[] formacSubconjunto = formacionSubconjunto();
+		
+		if(formacSubconjunto[0]==otraFormacion[0] &&
+			formacSubconjunto[1]==otraFormacion[1] &&
+			formacSubconjunto[2]==otraFormacion[2] &&
+			formacSubconjunto[3]==otraFormacion[3])
+			return true;
+		return false;
+	}
+	
+	
 	public boolean esFormacionValida()
 	{
 		//Defino mis formaciones validas: 4-4-2, 4-3-3, 4-5-1 o 5-3-2
@@ -135,13 +148,10 @@ public class Subconjunto
 		int[] formac3 = new int[]{1,4,5,1};
 		int[] formac4 = new int[]{1,5,3,2};
 		
-		//Formacion del subconjunto actual
-		int[] formacSubconjunto = formacionSubconjunto();
-		
-		if(		formacSubconjunto.equals(formac1)
-			|| formacSubconjunto.equals(formac2) 
-			|| formacSubconjunto.equals(formac3) 
-			|| formacSubconjunto.equals(formac4))
+		if(	esIguala(formac1)
+			|| esIguala(formac2) 
+			|| esIguala(formac3) 
+			|| esIguala(formac4))
 			return true;
 		else
 			return false;
