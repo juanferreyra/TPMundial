@@ -3,57 +3,62 @@ package negocio;
 //Modela una instancia del prolema
 public class Instancia 
 {
-	private Jugador[] jugadores;
+	private Jugador[] _jugadores;
 	//Almacena la variacion de rendimiento entre 2 jugadores
 	//si llegaran a formar parte del mismo equipo
-	private int[][] matrizDeRendimiento;
-	
-	
-	public Jugador[] getJugadores() 
-	{
-		return jugadores;
-	}
-
-	public void setJugadores(Jugador[] jugadores) 
-	{
-		this.jugadores = jugadores;
-	}
-
-	public int[][] getMatrizDeRendimiento() 
-	{
-		return matrizDeRendimiento;
-	}
-
-	public void setMatrizDeRendimiento(int[][] matrizDeRendimiento) 
-	{
-		this.matrizDeRendimiento = matrizDeRendimiento;
-	}
+	private int[][] _variacionDeRendimiento;
+	private int _agregados;
 	
 	//Constructor
 	public Instancia(int cantJugadores)
 	{
-		setJugadores(new Jugador[cantJugadores]);
-		setMatrizDeRendimiento(new int[cantJugadores][cantJugadores]);
+		_jugadores = new Jugador[cantJugadores];
+		_variacionDeRendimiento = new int[cantJugadores][cantJugadores];
+		_agregados = 0;
 	}
 	
-	//Retorna la cantidad de jugadores que tiene la instancia
-	public int  getCantidad()
+	public int[][] getMatrizDeRendimiento() 
 	{
-		return getJugadores().length;
+		return _variacionDeRendimiento;
+	}
+	
+	public int  cantidadJugadores()
+	{
+		return _jugadores.length;
+	}
+	
+	public void agregarJugador(String nombre, String posicion, int rendimiento)
+	{
+		if(_agregados != _jugadores.length)
+		{
+			_jugadores[_agregados] = new Jugador(nombre, posicion, rendimiento);
+			_agregados ++;
+		}
+		else
+		{
+			System.out.println("error en indice");
+			throw new IndexOutOfBoundsException();
+		}
+	}
+	
+	public void agregarVariacionRendimiento(int x, int y, int variacion)
+	{
+		_variacionDeRendimiento[x][y] = variacion;
+		_variacionDeRendimiento[y][x] = variacion;
 	}
 	
 	//Toma el indice de un jugador en el arreglo de jugadores
 	//y devuelve su rendimiento individual
-	public int getRendimientoIndividual(int i)
+	public int rendimientoDeJugador(int i)
 	{
-		return getJugadores()[i].get_rendimiento();
+		return _jugadores[i].getRendimiento();
 	}
 	
 	//Toma el indice de un jugador en el arreglo de jugadores
 	// y devuelve dicho jugador
 	public Jugador getJugador(int i)
 	{
-		return getJugadores()[i];
+		return _jugadores[i];
 	}
 
 

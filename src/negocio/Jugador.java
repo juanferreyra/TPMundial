@@ -6,50 +6,47 @@ public class Jugador
 	private String _posicion;
 	private int _rendimiento;
 	
+	/*	La posicion se ingresa como:	
+	*  	AR = arquero
+	*	DF = defensor
+	*	MD = mediocampista
+	*	DL = delantero */
 	
-	public String get_nombre() 
-	{
-		return _nombre;
-	}
-
-	public void set_nombre(String _nombre) 
-	{
-		this._nombre = _nombre;
-	}
-
-	public String get_posicion() 
-	{
-		return _posicion;
-	}
-
-	public void set_posicion(String _posicion) 
-	{
-		this._posicion = _posicion;
-	}
-
-	public int get_rendimiento() 
-	{
-		return _rendimiento;
-	}
-
-	public void set_rendimiento(int _rendimiento) 
-	{
-		this._rendimiento = _rendimiento;
-	}
-	
-	
-	//	La posicion se ingresa como:	
-	//  AR = arquero
-	//	DF = defensor
-	//	MD = mediocampista
-	//	DL = delantero
-	
-	//Constructor
 	public Jugador(String nombre, String posicion, int rendimiento)
 	{
 		_nombre = nombre;
 		_rendimiento = rendimiento;
 		_posicion = posicion;
+	}
+	
+	public String getNombre() 
+	{
+		return _nombre;
+	}
+
+	public void setNombre(String nombre) 
+	{
+		_nombre = nombre;
+	}
+
+	public String getPosicion() 
+	{
+		return _posicion;
+	}
+
+	public void setPosicion(String posicion) 
+	{
+		_posicion = posicion;
+	}
+
+	public int getRendimiento() 
+	{
+		return _rendimiento;
+	}
+
+	public void setRendimiento(int rendimiento) 
+	{
+		_rendimiento = rendimiento;
 	}
 	
 	public void mostrar()

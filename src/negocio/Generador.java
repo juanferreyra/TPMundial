@@ -4,56 +4,39 @@ package negocio;
 //cuya longitud depende de la cantidad de jugadores de la insstancia
 public class Generador
 {
-	private Instancia instancia;
-	private int cantJugadores;
+	private Instancia _instancia;
+	private int _cantJugadores;
 	//Array utilizado para contener los subconjuntos
 	//que se van generando
-	private int[] a;
+	private int[] _jugadoresSeleccionados;
 	
+	public Generador(Instancia inst)
+	{
+		_instancia = inst;
+		_cantJugadores = inst.cantidadJugadores();
+		//Se suma 1 para poder calcular cuando se llega al numero
+		//maximo de permutaciones posibles con cierta cantidad de jugadores
+		_jugadoresSeleccionados = new int [_cantJugadores + 1]; 
+	}
 	
 	public int getCantJugadores() 
 	{
-		return cantJugadores;
-	}
-
-	public void setCantJugadores(int cantJugadores) 
-	{
-		this.cantJugadores = cantJugadores;
-	}
-
-	public int[] getA()
-	{
-		return a;
-	}
-
-	public void setA(int[] a) 
-	{
-		this.a = a;
-	}
-
-	//Costructor
-	public Generador(Instancia inst)
-	{
-		instancia = inst;
-		cantJugadores = inst.getCantidad();
-		//Se suma 1 para poder calcular cuando se llega al numero
-		//maximo de permutaciones posibles con cierta cantidad de jugadores
-		a = new int [cantJugadores + 1]; 
+		return _cantJugadores;
 	}
 
 	//Indica si existe un subconjunto que todavia no se genero
 	public boolean hasNext()
 	{
-		//Cuando el ultimo valor es uno ya no hay 
+		//Cuando el ultimo valor es uno, ya no hay 
 		//mas permutaciones posibles
-		return a[cantJugadores] == 0; 
+		return _jugadoresSeleccionados[_cantJugadores] == 0; 
 	}
 	
 	//Devuelve el subconjunto siguiente al actual
 	public Subconjunto next()
 	{
 		sumarUno();
-		return new Subconjunto(a, instancia);
+		return new Subconjunto(_jugadoresSeleccionados, _instancia);
 	}
 	
 	//Toma el array "a" como un numero binario que se lee de
@@ -61,13 +44,13 @@ public class Generador
 	private void sumarUno()
 	{
 		int i = 0;
-		while( a[i] == 1 )
+		while( _jugadoresSeleccionados[i] == 1 )
 		{
-			a[i] = 0;
+			_jugadoresSeleccionados[i] = 0;
 			++i;
 		}
 		
-		a[i] = 1;
+		_jugadoresSeleccionados[i] = 1;
 	}
 	
 	public void mostrar(int[] a) 

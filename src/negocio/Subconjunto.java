@@ -5,33 +5,31 @@ public class Subconjunto
 {
 	//Representa con 1 a los elementos (jugadores en este caso)
 	// que forman parte del subconjunto y con 0 los que no
-	private int[] jugadoresSeleccionados;
-	private Instancia instancia;
+	private int[] _jugadoresSeleccionados;
+	private Instancia _instancia;
+	
+	public Subconjunto(int [] a, Instancia inst)
+	{
+		_jugadoresSeleccionados = a.clone();
+		_instancia = inst;
+	}
 	
 	public int[] getJugadoresSeleccionados() 
 	{
-		return jugadoresSeleccionados;
+		return _jugadoresSeleccionados;
 	}
 
 	public void setJugadoresSeleccionados(int[] jugadoresSeleccionados)  
 	{
-		this.jugadoresSeleccionados = jugadoresSeleccionados;
-	}
-
-	
-	//Constructor
-	public Subconjunto(int [] a, Instancia inst)
-	{
-		jugadoresSeleccionados = a.clone();
-		instancia = inst;
+		_jugadoresSeleccionados = jugadoresSeleccionados;
 	}
 	
 	public int cantidadDeJugadores()
 	{
 		int ret = 0;
-		for(int i=0; i<instancia.getCantidad(); ++i)
+		for(int i=0; i<_instancia.cantidadJugadores(); ++i)
 		{
-			if( jugadoresSeleccionados[i] == 1 )
+			if( _jugadoresSeleccionados[i] == 1 )
 				ret += 1;
 		}
 		
@@ -44,10 +42,10 @@ public class Subconjunto
 	{
 		double rendimientoFinal = 0;
 		
-		for (int i=0; i < instancia.getCantidad(); ++i) 
+		for (int i=0; i < _instancia.cantidadJugadores(); ++i) 
 		{
-			if(jugadoresSeleccionados[i] == 1) // Si el jugador de la posicion [i] esta en el equipo
-				rendimientoFinal += rendimientoEnConjunto(i/*jugador en la pos [i] del arreglo jugadores*/, instancia.getMatrizDeRendimiento());		
+			if(_jugadoresSeleccionados[i] == 1) // Si el jugador de la posicion [i] esta en el equipo
+				rendimientoFinal += rendimientoEnConjunto(i/*jugador en la pos [i] del arreglo jugadores*/, _instancia.getMatrizDeRendimiento());		
 		}
 		
 		return rendimientoFinal;
@@ -56,11 +54,11 @@ public class Subconjunto
 	//Calcula el rendimiento de un jugador dependiendo de los compañeros que tenga en el equipo
 	public double rendimientoEnConjunto(int Jugadorelegido/*Indice del jugador en la lista de jugadores*/, int[][] rendimientos)
 	{	
-		double rendimiento = instancia.getRendimientoIndividual(Jugadorelegido);
+		double rendimiento = _instancia.rendimientoDeJugador(Jugadorelegido);
 		
-		for (int i = 0; i < instancia.getCantidad(); i++) 
+		for (int i = 0; i < _instancia.cantidadJugadores(); i++) 
 		{
-			if(jugadoresSeleccionados[i] == 1)
+			if(_jugadoresSeleccionados[i] == 1)
 			{
 				int porcentajeDeVariacion = rendimientos[i][Jugadorelegido];
 				
@@ -74,23 +72,24 @@ public class Subconjunto
 	public double variacionDeRendimiento(double rendimientoJugador, int porcentajeDeVariacion/*al jugar con otro jugador j */)
 	{
 		
-		return rendimientoJugador + ( (double)(rendimientoJugador * (porcentajeDeVariacion) ) / 100 );
+		return rendimientoJugador + ((double)(rendimientoJugador * (porcentajeDeVariacion) ) / 100 );
 		
 	}
 	
 	public void mostrar()
 	{
-		for(int i=0; i<instancia.getCantidad(); ++i)
+		for(int i = 0; i <_instancia.cantidadJugadores(); i++)
 		{
-			if( jugadoresSeleccionados[i] == 1 )
-				instancia.getJugador(i).mostrar();
+			if( _jugadoresSeleccionados[i] == 1 )
+				_instancia.getJugador(i).mostrar();
 		}
 	} 
 	
-	//	 * AR = arquero
-	//	 * DF = defensor
-	//	 * MD = mediocampista
-	//	 * DL = delantero
+	/*Recordemos las leyendas de posicion!
+	 * AR = arquero
+	 * DF = defensor
+	 * MD = mediocampista
+	 * DL = delantero */
 	
 	//Devuelve un arreglo con la formacion que posee el subconjunto en cuestion
 	private int[] formacionSubconjunto() 
@@ -99,12 +98,12 @@ public class Subconjunto
 		//almacenando cada tipo de jugador en una posicion diferente
 		int[] formacion = new int[4];
 		
-		for (int i = 0; i < instancia.getCantidad(); i++) 
+		for (int i = 0; i < _instancia.cantidadJugadores(); i++) 
 		{	
 			//Si el jugador [i] forma parte del equipo
-			if(jugadoresSeleccionados[i]==1)
+			if(_jugadoresSeleccionados[i]==1)
 			{
-				String posJugador = instancia.getJugador(i).get_posicion();
+				String posJugador = _instancia.getJugador(i).getPosicion();
 				
 				//Si es arquero
 				if(posJugador.equals("AR"))
@@ -130,19 +129,19 @@ public class Subconjunto
 	
 	public boolean esFormacionValida()
 	{
-		//Defino mis formaciones validas: 4-4-2, 4-3-3, 4-5-1 o 5-4-1
+		//Defino mis formaciones validas: 4-4-2, 4-3-3, 4-5-1 o 5-3-2
 		int[] formac1 = new int[]{1,4,4,2};
 		int[] formac2 = new int[]{1,4,3,3};
 		int[] formac3 = new int[]{1,4,5,1};
-		int[] formac4 = new int[]{1,5,4,1};
+		int[] formac4 = new int[]{1,5,3,2};
 		
 		//Formacion del subconjunto actual
-		int[] formSubconjunto = formacionSubconjunto();
+		int[] formacSubconjunto = formacionSubconjunto();
 		
-		if(formSubconjunto.equals(formac1) 
-			|| formSubconjunto.equals(formac2) 
-			|| formSubconjunto.equals(formac3) 
-			|| formSubconjunto.equals(formac4))
+		if(		formacSubconjunto.equals(formac1)
+			|| formacSubconjunto.equals(formac2) 
+			|| formacSubconjunto.equals(formac3) 
+			|| formacSubconjunto.equals(formac4))
 			return true;
 		else
 			return false;
