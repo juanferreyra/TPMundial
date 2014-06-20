@@ -45,7 +45,7 @@ public class Subconjunto
 		for (int i=0; i < _instancia.cantidadJugadores(); ++i) 
 		{
 			if(_jugadoresSeleccionados[i] == 1) // Si el jugador de la posicion [i] esta en el equipo
-				rendimientoFinal += rendimientoEnConjunto(i/*jugador en la pos [i] del arreglo jugadores*/, _instancia.getMatrizDeRendimiento());		
+				rendimientoFinal += rendimientoEnConjunto(i/*jugador en la pos [i] del arreglo jugadores*/, _instancia.getVariacionDeRendimiento());		
 		}
 		
 		return rendimientoFinal;
@@ -71,9 +71,7 @@ public class Subconjunto
 	//Calcula como varia el rendimiento de un jugador al estar en el mismo equipo que otro
 	public double variacionDeRendimiento(double rendimientoJugador, int porcentajeDeVariacion/*al jugar con otro jugador j */)
 	{
-		
-		return rendimientoJugador + ((double)(rendimientoJugador * (porcentajeDeVariacion) ) / 100 );
-		
+		return rendimientoJugador + ((double)(rendimientoJugador * (porcentajeDeVariacion) ) / 100 );	
 	}
 	
 	public void mostrar()

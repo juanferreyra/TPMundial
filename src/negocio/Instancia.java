@@ -17,7 +17,7 @@ public class Instancia
 		_agregados = 0;
 	}
 	
-	public int[][] getMatrizDeRendimiento() 
+	public int[][] getVariacionDeRendimiento() 
 	{
 		return _variacionDeRendimiento;
 	}
