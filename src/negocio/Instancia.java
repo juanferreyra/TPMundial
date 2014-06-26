@@ -36,8 +36,7 @@ public class Instancia
 		}
 		else
 		{
-			System.out.println("error en indice");
-			throw new IndexOutOfBoundsException();
+			throw new IndexOutOfBoundsException("se supero la cantidad de jugadores ingresados");
 		}
 	}
 	

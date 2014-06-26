@@ -60,7 +60,7 @@ public class SucunjuntoTest
 		
 		Subconjunto s = new Subconjunto(jugadoresElegidos, inst);
 		
-		assertEquals(8.55, s.rendimientoEnConjunto(0, inst.getVariacionDeRendimiento()),0.1);
+		assertEquals(8.55, s.variacionRendimientoJugador(0, inst.getVariacionDeRendimiento()),0.1);
 	}
 	
 	@Test
@@ -88,7 +88,7 @@ public class SucunjuntoTest
 		
 		Subconjunto s = new Subconjunto(jugadoresElegidos, inst);
 		
-		assertEquals(21.41, s.rendimientoTotal(),0.1);
+		assertEquals(21.41, s.variacionRendimientoTotal(),0.1);
 	}
 
 }
